@@ -5,9 +5,20 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import javax.sql.DataSource;
+import java.util.Properties;
+
 public class HibernateUtil {
 
-    private SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+     private Configuration configuration = new Configuration()
+             .setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/userdata")
+             .setProperty("dialect", "org.hibernate.dialect.MySQLDialect")
+             .setProperty("hibernate.connection.username", "root")
+             .setProperty("hibernate.connection.password", "eoot")
+             .setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver")
+             .addAnnotatedClass(jm.task.core.jdbc.model.User.class);
+
+    private SessionFactory sessionFactory = configuration.buildSessionFactory();
     private Session session;
     private Transaction transaction;
 
