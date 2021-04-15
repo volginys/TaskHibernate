@@ -2,10 +2,7 @@ package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserServiceImpl;
-
 import java.util.List;
-
-
 
 public class Main {
     public static void main(String[] args) throws Exception{
@@ -20,9 +17,7 @@ public class Main {
         userService.saveUser("Дмитрий","Дмитров",(byte) 26);
 
         List<User> userList = userService.getAllUsers();
-        for(User user:userList){
-            System.out.println(user);
-        }
+        userList.forEach(p -> System.out.println(p));
 
         userService.cleanUsersTable();
         userService.dropUsersTable();

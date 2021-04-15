@@ -33,6 +33,7 @@ public class UserServiceImpl extends UserDaoHibernateImpl implements UserService
     public void cleanUsersTable() {
         super.cleanUsersTable();
     }
+
     public void close(){
         super.close();
     }
