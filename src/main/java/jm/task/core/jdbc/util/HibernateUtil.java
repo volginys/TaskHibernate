@@ -1,7 +1,9 @@
 package jm.task.core.jdbc.util;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
 
@@ -14,6 +16,8 @@ public class HibernateUtil {
              .addAnnotatedClass(jm.task.core.jdbc.model.User.class);
 
     public static SessionFactory getSessionFactory() {
-        return configuration.buildSessionFactory();
+        ServiceRegistry serviceRegistry  = new StandardServiceRegistryBuilder()
+                .applySettings(configuration.getProperties()).build();
+        return configuration.buildSessionFactory(serviceRegistry);
     }
 }
